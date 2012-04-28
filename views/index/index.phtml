@@ -1,0 +1,37 @@
+<?php
+/*=========================================================================
+MIDAS Server
+Copyright (c) Kitware SAS. 20 rue de la Villette. All rights reserved.
+69328 Lyon, FRANCE.
+
+See Copyright.txt for details.
+This software is distributed WITHOUT ANY WARRANTY; without even
+the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+PURPOSE.  See the above copyright notices for more information.
+=========================================================================*/
+?>
+<link type="text/css" rel="stylesheet" href="<?php echo $this->moduleWebroot?>/public/css/openscience.index.css" />
+<?php
+$this->headScript()->appendFile(
+  $this->apiWebroot . '/public/js/common/common.ajaxapi.js');
+$this->headScript()->appendFile(
+  $this->moduleWebroot . '/public/js/index/index.index.js');
+?>
+<div class="viewMain">
+  <h3>Open Science Dashboard</h3>
+</div>
+<div class="viewSideBar">
+  <div align="justify" class='sideElementFirst feedNotification'>
+    The Open Science dashboard allows viewing of reference algorithm results in 
+    both quantitative and qualitative ways.
+  </div>
+  <div class="sideElementLast feedStats">
+    <h1>Advanced Options</h1>
+    <?php
+    echo "<ul>";
+    echo "  <li>Test</li>";
+    echo "  <li>Items</li>";
+    echo "</ul>";
+    ?>
+  </div>
+</div>
