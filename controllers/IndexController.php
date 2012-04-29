@@ -21,7 +21,7 @@ class Openscience_IndexController extends Openscience_AppController
 
   public $_moduleDaos = array();
   public $_moduleModels = array();
-  public $_moduleComponents = array();
+  public $_moduleComponents = array('LinkDataToResults');
   public $_moduleForms = array();
 
   /**
@@ -36,6 +36,11 @@ class Openscience_IndexController extends Openscience_AppController
   function indexAction()
     {
     $this->view->header = "Open Science Dashboard";
+    $dataFolderId = 141;
+    $resultFolderId = 153;
+    $results = $this->ModuleComponent->LinkDataToResults->
+      getAssociationArray($dataFolderId, $resultFolderId);
+    $this->view->results = $results;
     }
 
 }//end class

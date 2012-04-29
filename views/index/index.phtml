@@ -18,7 +18,16 @@ $this->headScript()->appendFile(
   $this->moduleWebroot . '/public/js/index/index.index.js');
 ?>
 <div class="viewMain">
-  <h3>Open Science Dashboard</h3>
+<?php
+  foreach ($this->results as $result)
+    {
+    echo '<div class="resultTile">';
+    echo '  <div class="resultName">'.$result['name'].'</div>';
+    echo '  <div class="resultValue">Volume: '.$result['Seed 1: Volume'].'</div>';
+    echo '  <img src="'.$result['thumbnail_url'].'" width="281" />';
+    echo '</div>';
+    }
+?>
 </div>
 <div class="viewSideBar">
   <div align="justify" class='sideElementFirst feedNotification'>

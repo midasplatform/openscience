@@ -86,3 +86,11 @@ div.dashPanel {
   float: right;
   /*visibility: hidden;*/
 }
+
+div.resultTile {
+  display: inline-block;
+  width: 281px;
+  height: 325px;
+  border: 1px dotted #000000;
+  padding: 2px;
+}
