@@ -57,6 +57,7 @@ class Openscience_AlgorithmModel extends Openscience_AlgorithmModelBase
       ->from(array('r' => 'openscience_resultset'))
       ->join(array('a' => 'openscience_algorithm2resultset'))
       ->where('a.algorithm_id='.$algorithm->getKey())
+      ->where('a.resultset_id=r.resultset_id')
       ->order('date DESC')
       ->limit($limit);
     $rowset = $this->database->fetchAll($sql);
