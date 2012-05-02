@@ -56,10 +56,10 @@ $this->headScript()->appendFile(
 <?php
   foreach ($this->resultsets as $resultset)
     {
-    
+    $dateForUrl = explode(' ', $resultset->getDate());
     echo '<tr>';
     echo '  <td>'.$resultset->getDate().'</td>';
-    echo '  <td><a href="'.$resultset->getDashboard().'">Unit Tests</a></td>';
+    echo '  <td><a href="'.$resultset->getDashboard().'&date='.$dateForUrl[0].'">Unit Tests</a></td>';
     echo '  <td><a href="'.$this->webroot.'/folder/'.$resultset->getFolderId().'">'.$resultset->getData().'</a></td>';
     echo '  <td class="last"><a href="'.$this->webroot.'/openscience/dashboard/detail?resultsetId='.$resultset->getKey().'">'.$resultset->getPerformance().'</a></td>';
     echo '</tr>';
@@ -81,7 +81,7 @@ $this->headScript()->appendFile(
 <script type="text/javascript">
   var midas = midas || {};
   midas.openscience = midas.openscience || {};
-midas.openscience.resultsets = [[<?php foreach ($this->resultsets as $resultset) {
+  midas.openscience.resultsets = [[<?php foreach ($this->resultsets as $resultset) {
     echo '[\''.$resultset->getDate().'\','.$resultset->getPerformance().'],';
   }?>]];
 </script>
