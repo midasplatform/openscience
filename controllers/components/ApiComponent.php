@@ -143,6 +143,8 @@ class Openscience_ApiComponent extends AppComponent
 
     // Associate the resultset with the algorithm
     $algorithmDao = $algorithmModel->load($algorithmId);
+    $algorithmDao->setPerformance($meanCoefficientOfVariance);
+    $algorithmModel->save($algorithmDao);
     $algorithmModel->addResultset($algorithmDao, $resultsetDao);
 
     // Return a success message
