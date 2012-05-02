@@ -16,11 +16,10 @@ class Openscience_LinkDataToResultsComponent extends AppComponent
 
   /**
    * Output an multi-array associating data and results
-   * @param $dataFolderId the id of the folder containing input items
    * @param $resultFolderId the id of the folder containing result items
    * @return the name of the dashboard
    */
-  public function getAssociationArray($dataFolderId, $resultFolderId)
+  public function getAssociationArray($resultFolderId)
     {
 
     // Load the models needed
@@ -54,7 +53,7 @@ class Openscience_LinkDataToResultsComponent extends AppComponent
         if($element === 'Source Item')
           {
           $sourceItem = $itemModel->load($value);
-          $result['name'] = $this->getNameFromSourceItem($sourceItem);
+          $result = array_merge($result, $this->getNameFromSourceItem($sourceItem));
           }
         else if($element === 'Seed 1: Volume')
           {
@@ -93,7 +92,11 @@ class Openscience_LinkDataToResultsComponent extends AppComponent
         $patientName = $value;
         }
       }
-    return $patientName . ' ' . $uid . ' ' . $itemName;
+    $ret = array();
+    $ret['Patient Name'] = $patientName;
+    $ret['Series'] = $uid;
+    $ret['Timestamp'] = $itemName;
+    return $ret;
     }
 
   /**

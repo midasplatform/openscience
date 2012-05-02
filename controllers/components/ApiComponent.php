@@ -29,15 +29,48 @@ class Openscience_ApiComponent extends AppComponent
     }
 
   /**
-   * Get the name of the requested dashboard
-   * @param dashboard_id the id of the dashboard
-   * @return the name of the dashboard
+   * Add a resultset to an algorithm
+   * @param algorithmId the id of the algorithm to add a result to
+   * @param folderId the id of the folder to be associated with the result set
+   * @return a message of success
    */
-  public function getDashboardForDate($value)
+  public function resultsetAdd($value)
     {
-    $this->_checkKeys(array('date'), $value);
+    $this->_checkKeys(array('algorithmId', 'folderId'), $value);
+
+    $algorithmId = $value['algorithmId'];
+    $folderId = $value['folderId'];
+
+    $modelLoader = new MIDAS_ModelLoader;
+    $folderModel = $modelLoader->loadModel('Folder');
+    $algorithmModel = $modelLoader->loadModel('Algorithm', 'openscience');
+    $algorithmModel->loadDaoClass('AlgorithmDao', 'openscience');
+    $resultsetModel = $modelLoader->loadModel('Resultset', 'openscience');
+    $resultsetModel->loadDaoClass('ResultsetDao', 'openscience');
+
+    $componentLoader = new MIDAS_ComponentLoader();
+    $linkComponent = $componentLoader->loadComponent('LinkDataToResults',
+                                                     'openscience');
+    $jsonComponent = $componentLoader->loadComponent('Json');
+
+    $algorithmDao = $algorithmModel->load($algorithmId);
+
+    $resultsetDao = new Openscience_ResultsetDao();
+    $resultsetDao->setFolderId($folderId);
+    $resultsetDao->setData($algorithmDao->getData());
+    $resultsetDao->setDashboard($algorithmDao->getDashboard());
+    $contentArray = $linkComponent->getAssociationArray($folderId);
+    $contents = jsonComponent::encode($contentArray);
+    $resultsetDao->setContents($contents);
+    $resultsetDao->setPerformance(0.91);
+    $resultsetModel->save($resultsetDao);
+
+    $algorithmDao = $algorithmModel->load($algorithmId);
+    $algorithmModel->addResultset($algorithmDao, $resultsetDao);
+
     $ret = array();
-    $ret['test'] = 'Open Science Dashboard';
+    $ret['message'] = 'success';
+    return $ret;
     }
     
 } // end class

@@ -89,8 +89,35 @@ div.dashPanel {
 
 div.resultTile {
   display: inline-block;
-  width: 281px;
-  height: 325px;
+  width: 274px;
+  height: 330px;
   border: 1px dotted #000000;
   padding: 2px;
+  margin: 2px;
+  text-align: center;
+}
+
+div.resultName {
+  text-align: left;
+}
+
+table
+{
+    border-collapse: collapse; /* 'cellspacing' equivalent */
+}
+
+table td, table th
+{
+    padding: 5px; /* 'cellpadding' equivalent */
+    border-right: 1px solid #000000;
+}
+
+table th
+{
+    border-bottom: 1px solid #000000;
+}
+
+table td.last, table th.last
+{
+    border-right: 0px;
 }

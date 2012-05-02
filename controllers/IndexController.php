@@ -19,8 +19,8 @@ class Openscience_IndexController extends Openscience_AppController
   public $_components = array('Utility');
   public $_forms = array();
 
-  public $_moduleDaos = array();
-  public $_moduleModels = array();
+  public $_moduleDaos = array('Anatomicalarea', 'Algorithm', 'Resultset');
+  public $_moduleModels = array('Anatomicalarea', 'Algorithm', 'Resultset');
   public $_moduleComponents = array('LinkDataToResults');
   public $_moduleForms = array();
 
@@ -36,11 +36,22 @@ class Openscience_IndexController extends Openscience_AppController
   function indexAction()
     {
     $this->view->header = "Open Science Dashboard";
-    $dataFolderId = 141;
-    $resultFolderId = 153;
+     $resultFolderId = 153;
     $results = $this->ModuleComponent->LinkDataToResults->
-      getAssociationArray($dataFolderId, $resultFolderId);
+      getAssociationArray($resultFolderId);
     $this->view->results = $results;
+    }
+
+  function dashboardAction()
+    {
+    $this->view->header = "Open Science Dashboard";
+    $areas = $this->Openscience_Anatomicalarea->getAll();
+    var_dump($areas);
+    }
+
+  function detailsAction()
+    {
+    $dashboardId = $this->_getParam('dashboardId');
     }
 
 }//end class

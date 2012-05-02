@@ -18,7 +18,7 @@ $this->headScript()->appendFile(
   $this->moduleWebroot . '/public/js/index/index.index.js');
 ?>
 <div class="viewMain">
-  <h3>LSTK Results for April 24, 2012</h3>
+  <h3>Results for <?php echo $this->date; ?></h3>
   <a href="http://open.cdash.org/index.php?project=Insight&date=2012-04-24">
     Regression Test Results
   </a>
@@ -44,25 +44,8 @@ $this->headScript()->appendFile(
 </div>
 <div class="viewSideBar">
   <div align="justify" class='sideElementFirst feedNotification'>
-    <h1>Purpose</h1>
-    The Scientific method is anchored on the practice of verifying the
-    reproducibility of published results. The pervasive use of computation
-    in today's scientific work is such that in order to make possible to
-    replicated published results, the entire set of digital resources used
-    for performing the research must also be made publicly available. Is
-    this demand for reproducibility that leads us to Open Science, which
-    is the combination of Open Data, Open Source software, and Open Access
-    publications. When all these resources are made publicly available, we
-    are all empowered to repeat the experiments and verify their results
-    before they become part of the accepted body of knowledge.
-  </div>
-  <div class="sideElementLast feedStats">
-    <h1>Advanced Options</h1>
-    <?php
-    echo "<ul>";
-    echo "  <li>Test</li>";
-    echo "  <li>Items</li>";
-    echo "</ul>";
-    ?>
+    <h1>Menu</h1>
+    <ul>
+      <li><a href="<?php echo $this->webroot; ?>/openscience/dashboard">Main Page</a>
   </div>
 </div>

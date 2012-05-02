@@ -1,0 +1,69 @@
+<?php
+/*=========================================================================
+MIDAS Server
+Copyright (c) Kitware SAS. 20 rue de la Villette. All rights reserved.
+69328 Lyon, FRANCE.
+
+See Copyright.txt for details.
+This software is distributed WITHOUT ANY WARRANTY; without even
+the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+PURPOSE.  See the above copyright notices for more information.
+=========================================================================*/
+?>
+<link type="text/css" rel="stylesheet" href="<?php echo $this->moduleWebroot?>/public/css/openscience.index.css" />
+<?php
+$this->headScript()->appendFile(
+  $this->apiWebroot . '/public/js/common/common.ajaxapi.js');
+$this->headScript()->appendFile(
+  $this->moduleWebroot . '/public/js/index/index.index.js');
+?>
+<div class="viewMain">
+  <h3>Results for <?php echo $this->algorithm->getName(); ?></h3>
+  <p><?php echo $this->algorithm->getDescription(); ?></p>
+  <a href="<?php echo $this->algorithm->getDashboard(); ?>">
+    Regression Test Results
+  </a>
+  <br />
+  <br />
+  <a href="<?php echo $this->algorithm->getSourcecode(); ?>">
+    Source Code
+  </a>
+  <br />
+  <br />
+  <a href="<?php echo $this->algorithm->getPublications(); ?>">
+    Publications
+  </a>
+  <br />
+  <br />
+  <table>
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Regression Dashboard</th>
+      <th>Dataset</th>
+      <th class="last">Performance</th>
+    </tr>
+  </thead>
+  <tbody>
+<?php
+  foreach ($this->resultsets as $resultset)
+    {
+    
+    echo '<tr>';
+    echo '  <td>'.$resultset->getDate().'</td>';
+    echo '  <td><a href="'.$resultset->getDashboard().'">Unit Tests</a></td>';
+    echo '  <td><a href="'.$this->webroot.'/folder/'.$resultset->getFolderId().'">'.$resultset->getData().'</a></td>';
+    echo '  <td class="last"><a href="'.$this->webroot.'/openscience/dashboard/detail?resultsetId='.$resultset->getKey().'">'.$resultset->getPerformance().'</a></td>';
+    echo '</tr>';
+    }
+?>
+  </tbody>
+</table>
+</div>
+<div class="viewSideBar">
+  <div align="justify" class='sideElementFirst feedNotification'>
+    <h1>Menu</h1>
+    <ul>
+      <li><a href="<?php echo $this->webroot; ?>/openscience/dashboard">Main Page</a>
+  </div>
+</div>
