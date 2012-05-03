@@ -122,6 +122,7 @@ class Openscience_LinkDataToResultsComponent extends AppComponent
           $result[$element] = $value;
           }
         }
+      $result['item_id'] = $curItem->getKey();
       $ret[] = $result;
       }
     return $ret;
@@ -149,7 +150,8 @@ class Openscience_LinkDataToResultsComponent extends AppComponent
         {
         $uid = $value;
         }
-      else if( $element === 'DICOM' && $qualifier === 'PatientName')
+      else if( $element === 'DICOM' && ($qualifier === 'PatientsName' ||
+                                        $qualifier === 'PatientName'))
         {
         $patientName = $value;
         }
