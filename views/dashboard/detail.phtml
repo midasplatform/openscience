@@ -37,7 +37,7 @@ $this->headScript()->appendFile(
     echo '  <div class="resultName">Series: '.$result['Series'].'</div>';
     echo '  <div class="resultName">Timestamp: '.$result['Timestamp'].'</div>';
     echo '  <div class="resultName">Volume: '.$result['Seed 1: Volume'].'</div>';
-    echo '  <a href="'.$this->webroot.'/item/'.$result['item_id'].'"><img src="'.$result['thumbnail_url'].'" width="270" /></a>';
+    echo '  <a href="'.$this->webroot.'/item/'.$result['item_id'].'"><img src="'.$this->webroot.'/thumbnailcreator/thumbnail/item?itemthumbnail='.$result['itemthumbnail'].'" width="270" /></a>';
     echo '</div>';
     }
 ?>

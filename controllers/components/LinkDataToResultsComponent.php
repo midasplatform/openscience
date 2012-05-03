@@ -106,8 +106,7 @@ class Openscience_LinkDataToResultsComponent extends AppComponent
       $revisionDao = $itemModel->getLastRevision($curItem);
       $metadata = $itemRevisionModel->getMetadata($revisionDao);
       $thumbnailId = $itemThumbnailModel->getByItemId($curItem->getKey())->getKey();
-      $result['thumbnail_url'] = 'http://localhost/Midas3/thumbnailcreator/'.
-        'thumbnail/item?itemthumbnail=' . $thumbnailId;
+      $result['itemthumbnail'] = $thumbnailId;
       foreach($metadata as $metadataDao)
         {
         $element = $metadataDao->getElement();
